@@ -1,0 +1,67 @@
+\documentclass[]{article}
+
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage[symbol]{footmisc}
+\newcommand{\red}[1]{\textbf{\color{red} #1}}
+
+\usepackage[margin=1.5in]{geometry}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5\baselineskip}
+
+%opening
+\title{Response to Reviewer 1}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+We are pleased with the positive assessment of our work by the reviewer and thank him/her for thoroughly reading our manuscript and for providing constructive input. The reviewer justly gives suggestions for interesting additional optimal control cases. Although computational costs prohibit us from running these cases in an acceptable timeframe during the revision process, they are subject of current research and will be included in future work. The responses to the reviewer's comments and adaptations in the revised manuscript are discussed below.
+
+\hrulefill
+
+\paragraph{Reviewer} \textit{The present article investigates the improvement on wind-farm power by performing different wind turbine optimization strategies (yaw and induction) modeled using large-eddy simulations (LESs) combined with an adjoint-based optimization method. Two test cases are considered, one characterized by uniform incoming flow conditions (turbulence void), and another where a precursor LES is used to seed inflow turbulence in the domain containing the 4 x 4 wind turbines layout. The authors present new results about combining axial induction and dynamic yaw control. Although for the relatively small wind farm under consideration, the yaw control over-performs induction control, the authors present interesting analysis on the potential of combining the two methods. The manuscript is overall well written and organized, and the majority of the results are correctly interpreted and clearly articulated. Therefore, I recommend publication after minor 	revisions are made. Here below a list a series of concerns/clarifications that need to be addressed prior to its publication.}
+
+
+\section*{Comments}
+\hrulefill
+
+\paragraph{1. Reviewer} \textit{The authors use an actuator disk model that does not account for rotational effects (line 158). However, in lines 362-364 the authors state that their LES model output exhibits curling of the wakes as a result of the control strategy. What is the impact of the nonrotating actuator disk approach on wake curling and turbine control? It would be interesting to repeat on of the cases, in particular I3Y, including the tangential forces on the turbine, and report on the differences in the dynamics as well as power extraction and wind farm efficiency found.}
+
+\paragraph{Response} 
+
+
+\hrulefill
+
+\paragraph{2. Reviewer} \textit{Figure 12a displays a strong power recovery for rows 3 and 4 for the cases where yaw control is applied (this effect is less evident for the induction control cases), which results in a wind farm efficiency increase of ~20\% with respect to the reference case. I wonder how much of that improvement is due to the reduced number of wind turbine rows (only 4), and the ability to quickly adjust to a much higher power extraction level as the end of the wind farm is approached. It would be desirable to perform at least one more simulation (I3Y) with an extended domain and wind farm, doubling the number of turbine rows from 4 to 8. Such case will reveal the trend of the increase in power extraction and wind farm efficiency as the size of the wind farm is enlarged, and will help extrapolate to what the gain would be for a more realistic wind farm size. In addition, the authors could consider another case where the use of periodic boundary conditions in the streamwise direction, as an asymptotic limit for an “infinite” wind farm, allowing to keep the size of the simulation (although not informative of row dependency within the wind farm). These two additional cases will further increase the robustness of the analysis and conclusions regarding the combined induction/yaw control approach proposed, and the finite wind farm effects.}
+
+\paragraph{Response} 
+
+\hrulefill
+
+\paragraph{3. Reviewer} \textit{Line 226-230. How is that time related to an eddy and advection scales? What are the implications going to real large-scale forcing variability? Please comment on that.}
+
+\paragraph{Response} 
+
+\hrulefill
+
+\paragraph{4. Reviewer} \textit{Line 291-292. It would be beneficial to include the turbulent case also, making it a 4-panel figure. That case is more representative of an ABL flow and therefore provides the reader a better sense of the optimization convergence in a more realistic scenario.}
+
+\paragraph{Response} 
+
+\hrulefill
+
+\paragraph{5. Reviewer} \textit{Line 382-385. What about the peak that shows up in all case for St < 0.1 (~0.05)? Please explain.}
+
+\paragraph{Response} 
+
+
+\hrulefill
+
+\end{document}
