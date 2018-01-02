@@ -10,6 +10,53 @@
 
 \newcommand{\revision}[1]{\textbf{#1}}
 
+
+% Derivatives and differentials
+\newcommand{\ds}{~\text{d}\boldsymbol{s}}
+\newcommand{\dzeta}{~\text{d}\boldsymbol{\zeta}}
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\dx}{\text{d}\boldsymbol{x}}
+\newcommand{\dt}{\text{d}t}
+\newcommand{\ddt}[1]{\frac{\text{d} #1}{\text{d} t}}
+% Integrals
+\newcommand{\stint}{\int_{0}^{T} \int_{\Omega}}
+\newcommand{\sint}{\int_{\Omega}}
+\newcommand{\Tint}{\int_{0}^{T}}
+\newcommand{\tint}{\int_{0}^{t}}
+% Filtered variables
+\newcommand{\utilde}{\widetilde{\bs{u}}}
+\newcommand{\ptilde}{\widetilde{p}}
+\newcommand{\ctnhat}[1]{\widehat{C}_{T,#1}'}
+\newcommand{\ctihat}{\widehat{C}_{T,i}'}
+\newcommand{\cthat}{\widehat{C}_T'}
+% Other symbols
+\newcommand{\ctmax}{C_{T,\text{max}}'}
+\newcommand{\cti}{C_{T,i}'}
+\newcommand{\ctn}[1]{C_{T,#1}'}
+\newcommand{\R}{\mathscr{R}}
+\newcommand{\J}{\mathscr{J}}
+\newcommand{\Jtilde}{\tilde{\mathscr{J}}}
+\newcommand{\Jgrad}{\nabla \Jtilde}
+\newcommand{\Lagr}{\mathscr{L}}
+\newcommand{\eperp}{\bs{e}_\perp}
+\newcommand{\eperpi}{\bs{e}_{\perp,i}}
+\newcommand{\etransi}{\bs{e}_{\parallel,i}}
+\newcommand{\ex}{\bs{e}_x}
+\newcommand{\ey}{\bs{e}_y}
+\newcommand{\ez}{\bs{e}_z}
+\newcommand{\eperpn}[1]{\bs{e}_{\perp,#1}}
+\newcommand{\vi}{\frac{1}{A_i} \sint \R_i (\bs{s})~\utilde \cdot \eperpi \ds}
+% Operators
+\newcommand{\innerproduct}[2]{\bigg( #1, #2 \bigg)}
+\newcommand{\innerproductsmall}[2]{\big( #1, #2 \big)}
+\newcommand{\sumturbines}{\sum_{i=1}^{N_t}}
+\newcommand{\diracdelta}{{\delta}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+
+
+
 \usepackage[margin=1.5in]{geometry}
 
 \setlength{\parindent}{0pt}
@@ -146,9 +193,13 @@ $\dots$, \revision{and the vertical location of the turbine hubs $z_h$ is placed
 
 \hrulefill
 
-\paragraph{17. Reviewer} \textit{In Eq. A13 $rho_i$, $gamma_i$ and $chi_i$ should be defined. Currently they are defined in A.4.}
+\paragraph{17. Reviewer} \textit{In Eq. A13 $\rho_i$, $\gamma_i$ and $\chi_i$ should be defined. Currently they are defined in A.4.}
 
-\paragraph{Response} 
+\paragraph{Response} Thanks for pointing this out. The manuscript has been updated as follows (\red{line XX, p YY}):
+
+``
+adjoint variables \revision{$\bs{q}^* = [\bs{\xi}, \pi, \sigma_1, \dots, \sigma_{N_t}, \eta_1, \dots, \eta_{N_t}, \rho_1, \dots, \rho_{N_t}, \bs{\gamma_1}, \dots, \bs{\gamma}_{N_t}, \chi_1, \dots \chi_{N_t}]$, which serve as Lagrange multipliers. The additional variables $\rho_i, \bs{\gamma}_i$, and $\chi_i$ are the adjoint counterparts of $\R_i, \eperpi$, and $V_i$, resulting from including the definitions of the latter as explicit constraints in (A10 - A12). The resulting Lagrangian is expressed as follows:}
+''
 
 \hrulefill
 

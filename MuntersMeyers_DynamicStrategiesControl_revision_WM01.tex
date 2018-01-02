@@ -558,14 +558,14 @@ The derivation of the adjoint equations in this appendix is performed using the 
 &                                                   &        \nabla \cdot \utilde&=0 									        & \text{in } \Omega \times (0,T],\\
 &                                                   &        \tau \ddt{\ctihat}&=\cti - \ctihat 								& i=1\dots N_t~\text{in } (0,T],\\
 &                                                   &        \ddt{\theta_i}&=\omega_i											& i=1\dots N_t~\text{in } (0,T],\\
-&                                                   &        \R_i(\bs{x})&= \sint G(\bs{s} - \bs{x})~H\big[D/2 - \vert\vert \bs{s} - \bs{t}_i \vert\vert_2\big]~\diracdelta \big[ (\bs{s} - \bs{t}_i)\cdot \eperpi \big] \ds											& i=1\dots N_t~\text{in } (0,T],\\
+&                                                   &        \R_i(\bs{x})&= \sint G(\bs{s} - \bs{x})~H\big[D/2 - \vert\vert \bs{s} - \bs{t}_i \vert\vert_2\big]~\diracdelta \big[ (\bs{s} - \bs{t}_i)\cdot \eperpi \big] \ds											& i=1\dots N_t~\text{in } (0,T], \label{eq:rconstraint}\\
 &                                                   &        \eperpi&=\bs{e}_x \cos \theta_i  + \bs{e}_y \sin \theta_i											& i=1\dots N_t~\text{in } (0,T],\\
-&                                                   &        V_i&= \vi											& i=1\dots N_t~\text{in } (0,T].
+&                                                   &        V_i&= \vi											& i=1\dots N_t~\text{in } (0,T]. \label{eq:vconstraint}
 \end{alignat}
 }
 
 
-\noindent Further, we define the Lagrangian of this optimization problem by adding the state constraints, with shorthand notation $\bs{B}(\bs{\varphi}, \bs{q})$, to the cost functional through inner product with the adjoint variables $\bs{q}^* = [\bs{\xi}, \pi, \sigma_1, \dots, \sigma_{N_t}, \eta_1, \dots, \eta_{N_t}]$, which serve as Lagrange multipliers:
+\noindent Further, we define the Lagrangian of this optimization problem by adding the state constraints, with shorthand notation $\bs{B}(\bs{\varphi}, \bs{q})$, to the cost functional through inner product with the adjoint variables \revision{$\bs{q}^* = [\bs{\xi}, \pi, \sigma_1, \dots, \sigma_{N_t}, \eta_1, \dots, \eta_{N_t}, \rho_1, \dots, \rho_{N_t}, \bs{\gamma_1}, \dots, \bs{\gamma}_{N_t}, \chi_1, \dots \chi_{N_t}]$, which serve as Lagrange multipliers. The additional variables $\rho_i, \bs{\gamma}_i$, and $\chi_i$ are the adjoint counterparts of $\R_i, \eperpi$, and $V_i$, resulting from including the definitions of the latter as explicit constraints in (\ref{eq:rconstraint} - \ref{eq:vconstraint}). The resulting Lagrangian is expressed as follows:}
 
 \begin{align}
 &\mathscr{L}(\bs{\varphi}, \bs{q}, \bs{q}^*) \equiv \J(\bs{\varphi}, \bs{q}) + \innerproduct{\bf{B}(\bs{\varphi}, \bs{q})}{\bs{q}^*} \nonumber\\
@@ -579,7 +579,7 @@ The derivation of the adjoint equations in this appendix is performed using the 
 &+ \Tint \sumturbines \bigg\{ V_i - \vi \bigg\} \chi_i \dt .
 \end{align}
 
-\noindent The adjoint equations in \eqref{eq:adjoint_momentum} -- \eqref{eq:adjoint_eta} can then be found by postulating vanishing gradients of the Lagrangian as  $\mathscr{L}_{\bs{q}_j}(\delta \bs{q}_j) = (\partial \mathscr{L}/\partial \bs{q}_j, \delta \bs{q}_j) = 0$ with respect to each of the state variables $\bs{q}_j$ in $\bs{q} = [\utilde, \ptilde, \ctnhat{1}, \dots, \ctnhat{N_t}, \theta_1, \dots, \theta_{N_t}]$ for all possible variations $\delta \bs{q}_j$ (see, e.g. Refs. \cite{troltzsch,borzinschulz,hinze2008optimization}).  Further, given that these equations are satisfied, the gradient of the reduced cost functional can be found by expressing the sensitivity of the Lagrangian to the control variables as $\Lagr_{\varphi_j}(\delta \varphi_j)$ for the control parameters $\varphi_j$ in $\bs{\varphi} = [\ctn{1}, \dots, \ctn{N_t}, \omega_1, \dots, \omega_{N_t}]$. 
+\noindent The adjoint equations in \eqref{eq:adjoint_momentum} -- \eqref{eq:adjoint_eta} can then be found by postulating vanishing gradients of the Lagrangian as  $\mathscr{L}_{\bs{q}_j}(\delta \bs{q}_j) = (\partial \mathscr{L}/\partial \bs{q}_j, \delta \bs{q}_j) = 0$ with respect to each of the state variables \revision{$\bs{q}_j$ in $\bs{q} = [\utilde, \ptilde, \ctnhat{1}, \dots, \ctnhat{N_t}, \theta_1, \dots, \theta_{N_t}, \R_1, \dots, \R_{N_t}, \eperpn{1}, \dots, \eperpn{N_t}, V_1, \dots, V_{N_t}]$} for all possible variations $\delta \bs{q}_j$ (see, e.g. Refs. \cite{troltzsch,borzinschulz,hinze2008optimization}).  Further, given that these equations are satisfied, the gradient of the reduced cost functional can be found by expressing the sensitivity of the Lagrangian to the control variables as $\Lagr_{\varphi_j}(\delta \varphi_j)$ for the control parameters $\varphi_j$ in $\bs{\varphi} = [\ctn{1}, \dots, \ctn{N_t}, \omega_1, \dots, \omega_{N_t}]$. 
 Since the reduced formulation of the optimization problem by definition implies that $B\big(\bs{\varphi}, \bs{q}(\bs{\varphi})\big)=0$, it can be found that the reduced cost functional $\Jtilde$ and the Lagrangian $\Lagr$ are in fact equivalent \cite{hinze2008optimization}, i.e.
 
 \begin{equation}
