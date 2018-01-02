@@ -235,6 +235,8 @@ Instead of using a classical finite-difference gradient approximation to determi
 
 %\noindent and quantifies the dependence of the rotor footprint $\R_i$ on the yaw angle $\theta_i$. A further interpretation and illustration of this term is given in the Appendix. The derivation of the standard transport terms in the adjoint Navier-Stokes equations is well established in literature (see, e.g. Refs. \cite{bewley2001dns, choi1999instantaneous}). For the derivation of case-specific terms, such as the adjoint subgrid-scale Smagorinsky model, adjoint turbine forcing, and adjoint thrust coefficient (Equation \ref{eq:adjoint_sigma}), we refer the reader to Refs. \cite{goit2015optimal} and \cite{munters2017optimal}. The adjoint fringe forcing technique, facilitating non-cyclic adjoint simulations, is elaborated in Goit \emph{et al.} \cite{goit2016optimal}. Finally, the adjoint yaw angle equation for $\eta_i$ (Equation \eqref{eq:adjoint_eta}) is newly presented in this work, and is derived in the Appendix. Upon satisfaction of the adjoint equations, the adjoint variables $\bs{q}^* = [\bs{\xi}(\bs{x},t),~\pi(\bs{x},t),~\bs{\sigma}(t),~\bs{\eta}(t)]$ are subsequently used to form straightforward analytical expressions for the gradient as 
 
+
+
 \begin{equation}
 \nabla \Jtilde \equiv 
 \begin{bmatrix*}[l]
@@ -246,7 +248,7 @@ Instead of using a classical finite-difference gradient approximation to determi
 - \bs{\eta}
 \end{bmatrix} \label{eq:problem_gradient}.
 \end{equation}
-The adjoint gradient expression shown above is derived and compared to a finite difference gradient approximation in Appendix A.
+
 
 
 \section{Numerical setup and case description}\label{sec:opt_yaw_setup}
