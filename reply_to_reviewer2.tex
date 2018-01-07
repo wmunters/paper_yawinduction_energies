@@ -93,7 +93,13 @@ In the current manuscript, we aim to fill some of the aforementioned gaps in win
 
 \paragraph{2. Reviewer} \textit{Line 137: "...in an accurate model with full state...", references should be provided here with previous studies using this model to show its accuracy. Authors already cited them in Introduction but it would be worth to repeat some of them here.}
 
-\paragraph{Response} 
+\paragraph{Response} Done. References to previous studies using the same model were added (\red{line XX, p YY}):
+
+``
+... accurate model with full state information (see, e.g. Refs. [11--14]), i.e. using large-eddy simulation ...
+''
+
+\red{WM: Heb hier gereferereerd naar onze vorige optimal controls met LES studies... Weet niet of hij dit exact bedoelt, of eerder naar in welke mate LES geschikt is voor wind-farm simulaties (dit vermelden we niet echt in de introductie, dus ben niet zeker...) Evt. te bespreken. }
 
 \hrulefill
 
@@ -135,19 +141,44 @@ $\dots$, \revision{and the vertical location of the turbine hubs $z_h$ is placed
 
 \paragraph{7. Reviewer} \textit{Line 215-218: Figure should be provided with 3D domain, to clarify the vertical placement of the turbine.}
 
-\paragraph{Response} 
+\paragraph{Response} Done, Figure 3 has been updated in the revised manuscript, and is shown above.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{figure3_revised}
+\end{figure}
+
+
 
 \hrulefill
 
 \paragraph{8. Reviewer} \textit{It might be good to provide brief comments on sensitivity of the solution to control time or explain the choice of current control time. If it was done previously, reference would be enough.}
 
-\paragraph{Response} 
+\paragraph{Response} This is a valid comment. We have updated the discussion in the manuscript where time horizons $T$ and $T_A$ are selected as follows (\red{Section 3.1, line XX p YY}):
+
+``
+\revision{Within the context of the receding-horizon methodology introduced in Section 2, the optimization is performed over discrete time windows with optimization horizon $T$ and flow advancement time $T_A$. Ideally, one would take a very large optimization horizon $T$, and a small flow advancement time $T_A$ before recomputing the optimal control problem. However, in practice, $T$ is limited due to the inherent chaotic nature of turbulent flows that complicates control over long time horizons, and $T_A$ should not be taken too small to avoid excessive computational costs. In the current work, we use 6 consecutive windows, each with an optimization horizon $T=300$~s and a flow advancement time of $T_A = T/2= 150$~s, resulting in a total control time of 900~s. Note that, given a wind-farm length of $3 \times 6D = 1 800$ m and a free-stream velocity $U_\infty = 8$ m s$^{-1}$, the wind-farm flowthrough time is approximately 225 s. Hence, the total control time comprises about 4 flowthroughs, and the optimization horizon within each window covers about 1.33 flowthrough times. Because of the latter, each turbine row has the opportunity to take into account interaction with every downstream row, and the sensitivity of power gains to the optimization horizon $T$ is expected to be limited.} All time-averaged results ...
+''
+
+Furthermore, we quantified the sensitivity of attainable power gains to $T/T_A$ in previous work, and mention this explicitly in the revised manuscript (\red{Section 3.1, line XX p YY}):
+`` 
+... or all turbines. \revision{The sensitivity of attainable power gains to $T/T_A$, initial control guesses, and optimizer settings has been shown to be limited in a prior study [14].} Simulation and optimization parameters ...
+''
 
 \hrulefill
 
 \paragraph{9. Reviewer} \textit{It looks like no towers were included in current simulation. The authors should clearly state it in Introduction and provide comments on importance/non-importance of tower inclusion in Summary part. It could be provided after the authors provided comments on the effect of stratification.}
 
-\paragraph{Response} 
+\paragraph{Response} Indeed, the turbines are modeled without adding a turbine tower. We mention this explicitly in the revised manuscript as (Section 2, \red{line XX, p YY}):
+
+``
+... non-rotating actuator disk model (see, e.g., Ref [38]). \revision{Turbine towers are not included.} For each ...
+''
+
+Prior studies in literature have shown that including towers and nacelles in wind-farm LES can improve the near-wake characteristics, although we expect that, at the grid resolution of the current paper, the improvement would be relatively small. However, we agree that in the future this would be a valuable improvement to the fidelity of the turbine model. Moreover, when considering loads as indicated in the future work section, assessment of tower loading is of high importance. As suggested by the reviewer, we include this in the Conclusions section as follows:
+
+``
+\revision{The current optimization studies have been performed using relatively simple non-rotating actuator disk models for the wind turbine rotors without the inclusion of towers or nacelles. Although it has been shown that, by using this approach, the fidelity of far wake characteristics is satisfactory, the credibility of the current power gains and control strategies in practice could be further increased through wind-tunnel testing and similar optimization studies with more detailed turbine models, e.g. by adding drag forces for the tower and nacelle or by representing the rotor with an actuator line model. These are left for future work.} Finally, note that the current study optimizes power at all costs, and did not account for any undesirable loading characteristics. These should also be considered upon thoroughly comparing induction and yaw control for practical purposes. \revision{In this latter case, a detailed turbine representation is of high importance.}
+''
 
 \hrulefill
 
@@ -159,25 +190,40 @@ $\dots$, \revision{and the vertical location of the turbine hubs $z_h$ is placed
 
 \paragraph{11. Reviewer} \textit{Line 335: The authors clearly stated that the optimal control is heterogeneous, however no comments on why it is heterogeneous were provided. It was stated that turbine can pick either wake meandering type of motion or wake redirection, however what will determine this decision?}
 
-\paragraph{Response} 
+\paragraph{Response} As mentioned in the manuscript, the flow conditions of the different columns are equivalent in a \emph{statistical} sense. However, the gradient, and hence the updates to optimized control iterates, are based on \emph{instantaneous} flow conditions. Small instantaneous differences in flow conditions between different columns can hence tip the balance between different flow control mechanisms suchs as wake meandering, wake redirection through clockwise yawing, or wake redirection through counterclockwise yawing. Which mechanism is chosen depends on the initial steps in the optimization process when the optimizer is settling into a local optimum of the cost functional landscape. These steps are based on the gradient, which is found by solving the turbulent adjoint equations. Therefore, it is not possible to determine \emph{a priori} which method will be chosen by the optimizer. The fact that, after some time, all turbines seem to abandon the meandering mechanism in favor of the redirection mechanism seems to indicate that a global optimization approach would probably always yield the wake redirection mechanism.
+
+We included the reason for different mechanisms in the optimized controls as follows (Section 4.2.2, \red{line XX, p YY}):
+``
+... their behavior in an optimal control setting is heterogeneous. \revision{The reason for this is that the cost functional gradient used in the optimization process is based on the instantaneous flow conditions through the adjoint equations. These conditions are not the same for different columns, e.g. the turbulence in the wakes behind the third row observed in Figure 5 is different for every column, which can cause the optimizer to converge to a different dominant control mechanism in different columns.} For example, ...
+''
 
 \hrulefill
 
 \paragraph{12. Reviewer} \textit{Figure 5: The blue color for C4 and green color for C2 very hard to see, especially on I3Y case.}
 
-\paragraph{Response} 
+\paragraph{Response} Thank your for this justified comment. We have plotted all turbine locations in black in the revised version of Figure 5 (and the corresponding Figure 11 for turbulent inflow).
 
 \hrulefill
 
 \paragraph{13. Reviewer} \textit{Figure 6 shows that for uniform inflow in a reference case the turbine in a second row will be producing almost 90\% less power then upstream. As a reader I would be interested to see previous studies on this. Adding corresponding references would be enough.}
 
-\paragraph{Response} 
+\paragraph{Response} Indeed, power losses in uniform inflow conditions can be very large due to artificially stabilized wakes. In the submitted manuscript, we already mentioned that such conditions are somewhat artificial. We have expanded this discussion with some references in the revised manuscript. Furthermore, we added some references that also quantify severe losses under uniform inflow. A direct comparison between our results and prior work is not possible due to the dependence on numerical solver details, as indicated in the revised manuscript. The manuscript has been updated as follows (Section 3.1 \red{line XX, p YY}):
+
+``
+... These flow conditions can be regarded as somewhat artificial since, in the atmospheric boundary layer, background turbulence typically causes instant wake transition behind the turbine rotor. \revision{Furthermore, it is documented in literature that numerical details such as grid resolution, subgrid-scale modeling, and turbine models can have a significant impact on simulation results , whereas in turbulent inflow this is much less the case  [49-51]. In practice, this tends to lead to artificially stabilized wakes with very low farm efficiencies (see, e.g., Refs [52,53]).} Nevertheless, ...
+''
+
+
+Also, when discussing the power extraction of the refernece case in uniform inflow, we refer to this discussion (Section 4.2.1 \red{line XX, p YY}):
+``
+ As expected \revision{from the discussion in Section 3.1}, the efficiency of the uncontrolled reference farm R is very low at around $40\%$. ...
+''
 
 \hrulefill
 
 \paragraph{14. Reviewer} \textit{Figure 7: Add tick labels to X-axis, i.e. to Time. (Same for Fig. 13)}
 
-\paragraph{Response} 
+\paragraph{Response} We thank the reviewer for pointing out the missing labels, this has been corrected in the revised versions of Figures 7 and 13. Note that, in response to comments from another reviewer, we have reduced the amount of information in these figures somewhat for better clarity. 
 
 \hrulefill
 

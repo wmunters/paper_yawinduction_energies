@@ -9,7 +9,7 @@
 \newcommand{\red}[1]{\textbf{\color{red} #1}}
 
 \usepackage[margin=1.5in]{geometry}
-
+\newcommand{\revision}[1]{\textbf{#1}}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.5\baselineskip}
 
@@ -34,7 +34,19 @@ We are pleased with the positive assessment of our work by the reviewer and than
 
 \paragraph{1. Reviewer} \textit{Page 11, line 325, “additional control cases Ystat and Ymndr…” Although explanations of Ystat and Ymndr can be found later, e.g. on page 20, line 521. It is suggested that these control cases are explained upon their first appearance. In the caption of Figure 6, the case names should be noted as well.}
 
-\paragraph{Response} 
+\paragraph{Response} We thank the reviewer for this comment. Agreed, a definition of these cases upon their first appearance is required. We briefly explained the definitions of these cases as follows (\red{line XX, p YY}): 
+
+`` 
+The figure also includes results for two additional control cases that are based on simplified controls derived from the yaw characteristics of the optimal control case Y. \revision{Firstly, Ystat denotes a static yaw control case based upon the time-averaged yaw angles of case Y. Secondly, Ymndr is a dynamic yaw control case in which the first-row turbines performs small yaw rotations in an alternating directions.} These simplified control cases are further detailed and discussed below.
+''
+
+A more detailed explanation is given during the analysis of the yaw signals, as the definition of these simplified cases is based upon this analysis.
+
+The caption of Figure 6 is updated with the casenames as follows: 
+
+`` 
+Figure 6: \revision{Wind-farm power extraction for reference case R, optimal control cases (Y, Y5, I2, I3, I2Y, and I3Y), and derived control cases (Ystat and Ymndr, see further description below)}. \emph{a) } Row-averaged power, normalized by first-row power of reference case R. \emph{b) } Wind-farm efficiency $\eta_{\text{farm}}$ ... 
+''
 
 \hrulefill
 
@@ -42,17 +54,33 @@ We are pleased with the positive assessment of our work by the reviewer and than
 
 \paragraph{Response} 
 
+\begin{itemize}
+	\item Figure 11 (and Figure 5): due to the colored turbines, some turbines were hard to see against the colored background image. The turbines have been plotted in black in the revised figures. 
+	\item Figure 7 and 13: we agree that these figures were hard to read, but they contained a lot of information that was further used in the analysis. As a compromise, we plot the results only for column C2 and C4, and omit columns C1 and C3. This allows us to still distinguish between the redirecting and meandering regimes, and reduces the amount of clutter in the figure. Because of this, also some  minor adaptations in the manuscript text had to be made when describing the yaw time evolution. (see revised manuscript) Furthermore, Figures 5 and 11 have been plotted for $t=300$~s instead of the initial value of 450 s: since C2 in case Y has switched from meandering to redirection at 450~s, this could be confusing to the reader. 
+\end{itemize}
+	
 \hrulefill
 
 \paragraph{3. Reviewer} \textit{In Figures 9 and 15, the unit of PSD should be added.}
 
-\paragraph{Response} 
+\paragraph{Response} The power spectral density has units of ${\rm rad}^2 / {\rm Hz}$. However, in order to be consistent with the non-dimensional x-axis (i.e. frequency in the form of a Strouhal number), we also non-dimensionalized the PSDs appropriately as ${\rm PSD}_\theta \ U_\infty / D \sigma_{\theta}^2$. \red{Also note that, in response to the comments from another reviewer, we have not detrended the data in the revised figures, affecting the DC component of the spectra in this figure.}
 
 \hrulefill
 
 \paragraph{4. Reviewer} \textit{Table 2 gives a summary of the effect different control strategies. Why does the meandering yaw case have reduced power gains in the turbulent condition? How do the authors judge the uncertainties in their analysis? For example, by extending the optimization time window or by refining the cell size, will the conclusion be different?}
 
 \paragraph{Response} 
+
+\begin{itemize}
+	\item \textit{Why does the meandering yaw case haw reduced power gains in the turbulent conditions?} \\ We believe this is answered properly in the text (\red{l XX, p YY}):\\ `` However, in turbulent inflow conditions the same strategy did not lead to an increase in power extraction. This can be explained by the fact that meandering is already triggered naturally in turbulent boundary layers. Instead of actively reinforcing downstream wake meandering, the faint traces of spectral peaks at $St = 0.2$ observed in Figure~15 might therefore simply be the response of yawing turbines to variability in the incident flow angle induced by natural upstream wake meandering. Another hypothesis is that reinforcing natural meandering requires more complex control of the yaw rate than the currently considered bang-bang control, and that the phase of yaw angle variations might have to be matched to local flow conditions. Further research is required to confirm or negate these hypotheses.''
+	\item \textit{How do the authors judge the uncertainties in their analysis?} \\ Indeed, the optimization setup requires some user-defined parameters. In an earlier study [14], we have performed a parameter study for some of them, leading to the currently used values for e.g. the initial control guess, amount of retained Hessain pairs in the BFGS iterations, and $T/T_A$, and were able to confirm that the choices made for these parameters do not significantly affect the outcome of the simulations. We added this as a remark in the manuscript as follows (\red{line XX, p YY}):\\ ``... for all turbines. \revision{The sensitivity of attainable power gains to $T/T_A$, initial control guesses, and optimizer settings has been shown to be limited in a prior study[14].} Simulation ...''\\ Regarding the specific examples given by the reviewer:
+	\begin{enumerate}
+		\item \textit{Extending the optimization time window}: A longer optimization horizon $T$ leads to more opportunity for interaction between the turbines and hence potentially larger power gains. However, given the limited wind-farm size in the current study, we are able to use an optimization horizon (300 s) well over the wind-farm flowthrough time ($\approx 225$ s). This means that interactions between each of the turbine rows can be taken into account during the optimization for a significant portion of the window. Therefore, the sensitivity of the conclusions to extending the optimization window is expected to be small. This has been mentioned in the manuscripts as follows (\red{line XX, p YY}): \\``...resulting in a total control time of 900~s. \revision{Note that, given a wind-farm length of $3 \times 6D = 1 800$ m and a free-stream velocity $U_\infty = 8$ m s$^{-1}$, the wind-farm flowthrough time is approximately 225 s. Hence, the total control time comprises about 4 flowthroughs, and the optimization horizon within each window covers about 1.33 flowthrough times. Because of the latter, each turbine row has the opportunity to take into account interaction with every downstream row, and the sensitivity of power gains to the optimization horizon $T$ is expected to be limited.} All time-averaged results ...''
+		\item \textit{Refining the cell size}: In order to limit computational costs, we use a relatively limited resolution to run the optimal control cases. In earlier work [1], a numerical experiment was performed to assess the grid sensitivity of a rotating ADM using a solver with similar pseudo-spectral / finite-difference numerics as our solver. It was found that, for resolutions close to the one used in the current study (our resolution is slightly higher than case ADM-R3 in the mentioned study), simulation results were relatively insensitive to grid resolution, except for some small discrepancies in the near-wake top-tip turbulence intensity. Therefore, we are confident about the grid sensitivity of the conclusions in the current study. \red{WM - Weet niet of we dit expliciet in de tekst moeten verwerken? evt. te bespreken...}
+	\end{enumerate}
+\end{itemize}
+
+[1] Y.-T. Wu, F. Port\'e-Agel. ``Large-eddy simulation of wind-turbine wakes: evaluation of turbine parametrisations'' Boundary-Layer Meteorology 128 (2011): 345--366
 
 \hrulefill
 
